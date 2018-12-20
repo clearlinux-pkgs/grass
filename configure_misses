@@ -1,0 +1,36 @@
+Configure miss: whether the C compiler (gcc -O2 -fPIC -g -feliminate-unused-debug-types -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wformat -Wformat-security -Wl,--copy-dt-needed-entries,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -ftree-vectorize -Wl,--enable-new-dtags -m64 -march=westmere -mtune=haswell -fasynchronous-unwind-tables -fno-omit-frame-pointer -Wp,-D_REENTRANT   ) is a cross-compiler
+Configure miss: Cygwin environment
+Configure miss: mingw32 environment
+Configure miss: executable suffix
+Configure miss: svnversion
+Configure miss: MacOSX App
+Configure miss: MacOSX architectures
+Configure miss: MacOSX SDK
+Configure miss: yywrap in -lfl
+Configure miss: f2c.h
+Configure miss: g2c.h
+Configure miss: Cygwin environment
+Configure miss: setruid
+Configure miss: W11
+Configure miss: X
+Configure miss: atan
+Configure miss: dlsym
+Configure miss: whether to use bzlib
+Configure miss: whether to use Readline
+Configure miss: whether to use libLAS
+Configure miss: whether to use PDAL
+Configure miss: whether to use NetCDF
+Configure miss: whether to use GEOS
+Configure miss: whether to use PostgreSQL
+Configure miss: whether to use MySQL
+Configure miss: whether to use ODBC
+Configure miss: whether to use BLAS
+Configure miss: whether to use LAPACK
+Configure miss: whether to use FreeType
+Configure miss: whether to use NLS
+Configure miss: whether the C++ compiler (g++ -O2 -fPIC -g -feliminate-unused-debug-types -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wformat -Wformat-security -Wl,--copy-dt-needed-entries,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -ftree-vectorize -Wl,--enable-new-dtags -m64 -march=westmere -mtune=haswell -fasynchronous-unwind-tables -fno-omit-frame-pointer -Wp,-D_REENTRANT  -std=gnu++98  -Wl,--export-dynamic) is a cross-compiler
+Configure miss: whether to use openDWG
+Configure miss: whether to use POSIX threads
+Configure miss: GOMP_parallel_start
+Configure miss: whether to use OpenCL
+Configure miss: _LARGE_FILES value needed for large files

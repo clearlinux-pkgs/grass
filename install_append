@@ -1,0 +1,3 @@
+rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/include/grass
+cp -r include/* %{buildroot}/usr/include/grass

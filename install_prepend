@@ -1,0 +1,2 @@
+mkdir -p %{buildroot}/usr/etc
+touch  %{buildroot}/usr/etc/fontcap

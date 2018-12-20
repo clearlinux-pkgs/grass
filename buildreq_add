@@ -1,0 +1,21 @@
+# This file contains additional build requirements that did not get
+# picked up automatically. One name per line, no whitespace.
+proj-dev
+gdal-dev
+flex
+bison
+tiff-dev
+geos-dev
+libpng-dev
+bzip2-dev
+gfortran
+openblas
+netcdf-dev
+geos
+freetype-dev
+mesa-dev
+buildreq-kde
+fftw-dev
+glu-dev
+cairo-dev
+sqlite-autoconf-dev
