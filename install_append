@@ -1,3 +1,5 @@
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/include/grass
+mkdir -p %{buildroot}/usr/lib64
 cp -r include/* %{buildroot}/usr/include/grass
+cp dist.x86_64-generic-linux-gnu/lib/* %{buildroot}/usr/lib64

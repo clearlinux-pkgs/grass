@@ -4,7 +4,7 @@
 #
 Name     : grass
 Version  : 7.4.3
-Release  : 1
+Release  : 2
 URL      : https://grass.osgeo.org/grass74/source/grass-7.4.3.tar.gz
 Source0  : https://grass.osgeo.org/grass74/source/grass-7.4.3.tar.gz
 Summary  : Multi-producer-multi-consumer signal dispatching mechanism
@@ -57,7 +57,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1545342133
+export SOURCE_DATE_EPOCH=1545342817
 export CFLAGS="$CFLAGS  "
 export FCFLAGS="$CFLAGS  "
 export FFLAGS="$CFLAGS  "
@@ -68,7 +68,7 @@ export CXXFLAGS="$CXXFLAGS  -std=gnu++98"
 make || :
 
 %install
-export SOURCE_DATE_EPOCH=1545342133
+export SOURCE_DATE_EPOCH=1545342817
 rm -rf %{buildroot}
 ## install_prepend content
 mkdir -p %{buildroot}/usr/etc
@@ -87,7 +87,9 @@ cp vector/v.lrs/LICENSE %{buildroot}/usr/share/package-licenses/grass/vector_v.l
 ## install_append content
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/include/grass
+mkdir -p %{buildroot}/usr/lib64
 cp -r include/* %{buildroot}/usr/include/grass
+cp dist.x86_64-generic-linux-gnu/lib/* %{buildroot}/usr/lib64
 ## install_append end
 
 %files
@@ -234,3 +236,74 @@ cp -r include/* %{buildroot}/usr/include/grass
 /usr/include/grass/vedit.h
 /usr/include/grass/version.h
 /usr/include/grass/version.h.in
+/usr/lib64/*.a
+/usr/lib64/libgrass_arraystats.7.4.3.so
+/usr/lib64/libgrass_arraystats.so
+/usr/lib64/libgrass_bitmap.7.4.3.so
+/usr/lib64/libgrass_bitmap.so
+/usr/lib64/libgrass_btree.7.4.3.so
+/usr/lib64/libgrass_btree.so
+/usr/lib64/libgrass_btree2.7.4.3.so
+/usr/lib64/libgrass_btree2.so
+/usr/lib64/libgrass_cairodriver.7.4.3.so
+/usr/lib64/libgrass_cairodriver.so
+/usr/lib64/libgrass_calc.7.4.3.so
+/usr/lib64/libgrass_calc.so
+/usr/lib64/libgrass_ccmath.7.4.3.so
+/usr/lib64/libgrass_ccmath.so
+/usr/lib64/libgrass_cdhc.7.4.3.so
+/usr/lib64/libgrass_cdhc.so
+/usr/lib64/libgrass_datetime.7.4.3.so
+/usr/lib64/libgrass_datetime.so
+/usr/lib64/libgrass_dbmibase.7.4.3.so
+/usr/lib64/libgrass_dbmibase.so
+/usr/lib64/libgrass_dbmiclient.7.4.3.so
+/usr/lib64/libgrass_dbmiclient.so
+/usr/lib64/libgrass_dbmidriver.7.4.3.so
+/usr/lib64/libgrass_dbmidriver.so
+/usr/lib64/libgrass_dbstubs.7.4.3.so
+/usr/lib64/libgrass_dbstubs.so
+/usr/lib64/libgrass_display.7.4.3.so
+/usr/lib64/libgrass_display.so
+/usr/lib64/libgrass_driver.7.4.3.so
+/usr/lib64/libgrass_driver.so
+/usr/lib64/libgrass_dspf.7.4.3.so
+/usr/lib64/libgrass_dspf.so
+/usr/lib64/libgrass_g3d.7.4.3.so
+/usr/lib64/libgrass_g3d.so
+/usr/lib64/libgrass_gis.7.4.3.so
+/usr/lib64/libgrass_gis.so
+/usr/lib64/libgrass_gmath.7.4.3.so
+/usr/lib64/libgrass_gmath.so
+/usr/lib64/libgrass_gpde.7.4.3.so
+/usr/lib64/libgrass_gpde.so
+/usr/lib64/libgrass_gproj.7.4.3.so
+/usr/lib64/libgrass_gproj.so
+/usr/lib64/libgrass_htmldriver.7.4.3.so
+/usr/lib64/libgrass_htmldriver.so
+/usr/lib64/libgrass_interpdata.7.4.3.so
+/usr/lib64/libgrass_interpdata.so
+/usr/lib64/libgrass_linkm.7.4.3.so
+/usr/lib64/libgrass_linkm.so
+/usr/lib64/libgrass_pngdriver.7.4.3.so
+/usr/lib64/libgrass_pngdriver.so
+/usr/lib64/libgrass_psdriver.7.4.3.so
+/usr/lib64/libgrass_psdriver.so
+/usr/lib64/libgrass_qtree.7.4.3.so
+/usr/lib64/libgrass_qtree.so
+/usr/lib64/libgrass_raster.7.4.3.so
+/usr/lib64/libgrass_raster.so
+/usr/lib64/libgrass_rowio.7.4.3.so
+/usr/lib64/libgrass_rowio.so
+/usr/lib64/libgrass_segment.7.4.3.so
+/usr/lib64/libgrass_segment.so
+/usr/lib64/libgrass_shape.7.4.3.so
+/usr/lib64/libgrass_shape.so
+/usr/lib64/libgrass_sqlp.7.4.3.so
+/usr/lib64/libgrass_sqlp.so
+/usr/lib64/libgrass_stats.7.4.3.so
+/usr/lib64/libgrass_stats.so
+/usr/lib64/libgrass_symb.7.4.3.so
+/usr/lib64/libgrass_symb.so
+/usr/lib64/libgrass_temporal.7.4.3.so
+/usr/lib64/libgrass_temporal.so
