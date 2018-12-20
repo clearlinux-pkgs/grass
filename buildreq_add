@@ -19,3 +19,4 @@ fftw-dev
 glu-dev
 cairo-dev
 sqlite-autoconf-dev
+grass-dev

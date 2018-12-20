@@ -4,7 +4,7 @@
 #
 Name     : grass
 Version  : 7.4.3
-Release  : 2
+Release  : 3
 URL      : https://grass.osgeo.org/grass74/source/grass-7.4.3.tar.gz
 Source0  : https://grass.osgeo.org/grass74/source/grass-7.4.3.tar.gz
 Summary  : Multi-producer-multi-consumer signal dispatching mechanism
@@ -23,6 +23,7 @@ BuildRequires : geos
 BuildRequires : geos-dev
 BuildRequires : gfortran
 BuildRequires : glu-dev
+BuildRequires : grass-dev
 BuildRequires : libpng-dev
 BuildRequires : mesa-dev
 BuildRequires : netcdf-dev
@@ -57,7 +58,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1545342817
+export SOURCE_DATE_EPOCH=1545343761
 export CFLAGS="$CFLAGS  "
 export FCFLAGS="$CFLAGS  "
 export FFLAGS="$CFLAGS  "
@@ -68,7 +69,7 @@ export CXXFLAGS="$CXXFLAGS  -std=gnu++98"
 make || :
 
 %install
-export SOURCE_DATE_EPOCH=1545342817
+export SOURCE_DATE_EPOCH=1545343761
 rm -rf %{buildroot}
 ## install_prepend content
 mkdir -p %{buildroot}/usr/etc
