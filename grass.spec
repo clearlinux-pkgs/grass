@@ -4,7 +4,7 @@
 #
 Name     : grass
 Version  : 7.4.3
-Release  : 3
+Release  : 4
 URL      : https://grass.osgeo.org/grass74/source/grass-7.4.3.tar.gz
 Source0  : https://grass.osgeo.org/grass74/source/grass-7.4.3.tar.gz
 Summary  : Multi-producer-multi-consumer signal dispatching mechanism
