@@ -4,7 +4,7 @@
 #
 Name     : grass
 Version  : 7.4.3
-Release  : 4
+Release  : 5
 URL      : https://grass.osgeo.org/grass74/source/grass-7.4.3.tar.gz
 Source0  : https://grass.osgeo.org/grass74/source/grass-7.4.3.tar.gz
 Summary  : Multi-producer-multi-consumer signal dispatching mechanism
@@ -45,9 +45,19 @@ agencies and environmental consulting companies.
 Summary: dev components for the grass package.
 Group: Development
 Provides: grass-devel = %{version}-%{release}
+Requires: grass = %{version}-%{release}
 
 %description dev
 dev components for the grass package.
+
+
+%package staticdev
+Summary: staticdev components for the grass package.
+Group: Default
+Requires: grass-dev = %{version}-%{release}
+
+%description staticdev
+staticdev components for the grass package.
 
 
 %prep
@@ -58,26 +68,25 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1545343761
-export CFLAGS="$CFLAGS  "
-export FCFLAGS="$CFLAGS  "
-export FFLAGS="$CFLAGS  "
-export CXXFLAGS="$CXXFLAGS  -std=gnu++98"
+export SOURCE_DATE_EPOCH=1556058388
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %configure --disable-static --with-fftw \
 --with-openmp \
 --without-freetype
 make || :
 
 %install
-export SOURCE_DATE_EPOCH=1545343761
+export SOURCE_DATE_EPOCH=1556058388
 rm -rf %{buildroot}
 ## install_prepend content
 mkdir -p %{buildroot}/usr/etc
 touch  %{buildroot}/usr/etc/fontcap
 ## install_prepend end
 mkdir -p %{buildroot}/usr/share/package-licenses/grass
+cp COPYING %{buildroot}/usr/share/package-licenses/grass/COPYING
 cp GPL.TXT %{buildroot}/usr/share/package-licenses/grass/GPL.TXT
 cp lib/external/ccmath/lgpl.license %{buildroot}/usr/share/package-licenses/grass/lib_external_ccmath_lgpl.license
+cp lib/init/license.txt %{buildroot}/usr/share/package-licenses/grass/lib_init_license.txt
 cp lib/python/ctypes/ctypesgencore/LICENSE %{buildroot}/usr/share/package-licenses/grass/lib_python_ctypes_ctypesgencore_LICENSE
 cp lib/python/pydispatch/license.txt %{buildroot}/usr/share/package-licenses/grass/lib_python_pydispatch_license.txt
 cp lib/vector/dglib/COPYING %{buildroot}/usr/share/package-licenses/grass/lib_vector_dglib_COPYING
@@ -237,7 +246,6 @@ cp dist.x86_64-generic-linux-gnu/lib/* %{buildroot}/usr/lib64
 /usr/include/grass/vedit.h
 /usr/include/grass/version.h
 /usr/include/grass/version.h.in
-/usr/lib64/*.a
 /usr/lib64/libgrass_arraystats.7.4.3.so
 /usr/lib64/libgrass_arraystats.so
 /usr/lib64/libgrass_bitmap.7.4.3.so
@@ -308,3 +316,7 @@ cp dist.x86_64-generic-linux-gnu/lib/* %{buildroot}/usr/lib64
 /usr/lib64/libgrass_symb.so
 /usr/lib64/libgrass_temporal.7.4.3.so
 /usr/lib64/libgrass_temporal.so
+
+%files staticdev
+%defattr(-,root,root,-)
+/usr/lib64/libgrass_iostream.7.4.3.a
