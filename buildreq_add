@@ -20,3 +20,6 @@ glu-dev
 cairo-dev
 sqlite-autoconf-dev
 grass-dev
+buildreq-gnome
+geos-dev
+netcdf
