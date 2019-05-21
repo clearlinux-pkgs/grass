@@ -4,7 +4,7 @@
 #
 Name     : grass
 Version  : 7.4.4
-Release  : 6
+Release  : 7
 URL      : https://grass.osgeo.org/grass74/source/grass-7.4.4.tar.gz
 Source0  : https://grass.osgeo.org/grass74/source/grass-7.4.4.tar.gz
 Summary  : Geospatial data management and analysis, image processing, graphics/maps production, spatial modeling and visualization
@@ -72,7 +72,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1558480096
+export SOURCE_DATE_EPOCH=1558481524
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -86,7 +86,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -std=gnu++98"
 make || :
 
 %install
-export SOURCE_DATE_EPOCH=1558480096
+export SOURCE_DATE_EPOCH=1558481524
 rm -rf %{buildroot}
 ## install_prepend content
 mkdir -p %{buildroot}/usr/etc
