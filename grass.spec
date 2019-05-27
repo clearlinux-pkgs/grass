@@ -4,7 +4,7 @@
 #
 Name     : grass
 Version  : 7.4.4
-Release  : 8
+Release  : 9
 URL      : https://grass.osgeo.org/grass74/source/grass-7.4.4.tar.gz
 Source0  : https://grass.osgeo.org/grass74/source/grass-7.4.4.tar.gz
 Summary  : Geospatial data management and analysis, image processing, graphics/maps production, spatial modeling and visualization
