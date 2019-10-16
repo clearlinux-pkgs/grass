@@ -4,7 +4,7 @@
 #
 Name     : grass
 Version  : 7.6.1
-Release  : 12
+Release  : 13
 URL      : https://github.com/OSGeo/grass/archive/grass_7_6_1.tar.gz
 Source0  : https://github.com/OSGeo/grass/archive/grass_7_6_1.tar.gz
 Summary  : Multi-producer-multi-consumer signal dispatching mechanism
@@ -70,7 +70,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1564994647
+export SOURCE_DATE_EPOCH=1571213051
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -82,33 +82,38 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -std=gnu++98"
 %configure --disable-static --with-fftw \
 --with-openmp \
 --without-freetype
-make || :
+make  || :
 
 %install
-export SOURCE_DATE_EPOCH=1564994647
+export SOURCE_DATE_EPOCH=1571213051
 rm -rf %{buildroot}
 ## install_prepend content
 mkdir -p %{buildroot}/usr/etc
 touch  %{buildroot}/usr/etc/fontcap
 ## install_prepend end
 mkdir -p %{buildroot}/usr/share/package-licenses/grass
-cp COPYING %{buildroot}/usr/share/package-licenses/grass/COPYING
-cp GPL.TXT %{buildroot}/usr/share/package-licenses/grass/GPL.TXT
-cp lib/external/ccmath/lgpl.license %{buildroot}/usr/share/package-licenses/grass/lib_external_ccmath_lgpl.license
-cp lib/init/license.txt %{buildroot}/usr/share/package-licenses/grass/lib_init_license.txt
-cp lib/python/ctypes/ctypesgencore/LICENSE %{buildroot}/usr/share/package-licenses/grass/lib_python_ctypes_ctypesgencore_LICENSE
-cp lib/python/pydispatch/license.txt %{buildroot}/usr/share/package-licenses/grass/lib_python_pydispatch_license.txt
-cp lib/vector/dglib/COPYING %{buildroot}/usr/share/package-licenses/grass/lib_vector_dglib_COPYING
-cp macosx/pkg/resources/License.rtf %{buildroot}/usr/share/package-licenses/grass/macosx_pkg_resources_License.rtf
-cp mswindows/external/rbatch/COPYING %{buildroot}/usr/share/package-licenses/grass/mswindows_external_rbatch_COPYING
-cp mswindows/external/rbatch/LICENSE %{buildroot}/usr/share/package-licenses/grass/mswindows_external_rbatch_LICENSE
-cp vector/v.lrs/LICENSE %{buildroot}/usr/share/package-licenses/grass/vector_v.lrs_LICENSE
+cp %{_builddir}/grass-grass_7_6_1/COPYING %{buildroot}/usr/share/package-licenses/grass/fec4c918439699ee30a9d9d3c6871eab45246425
+cp %{_builddir}/grass-grass_7_6_1/GPL.TXT %{buildroot}/usr/share/package-licenses/grass/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
+cp %{_builddir}/grass-grass_7_6_1/lib/external/ccmath/lgpl.license %{buildroot}/usr/share/package-licenses/grass/da016558d8dd563e6693582be08505ac1a5387a1
+cp %{_builddir}/grass-grass_7_6_1/lib/init/license.txt %{buildroot}/usr/share/package-licenses/grass/9fb43ecc8e9ad6fa06ea95c49ca2bbe7f9917f11
+cp %{_builddir}/grass-grass_7_6_1/lib/python/ctypes/ctypesgencore/LICENSE %{buildroot}/usr/share/package-licenses/grass/0e8932b32ff8fa9942ca97b138f518cddf430977
+cp %{_builddir}/grass-grass_7_6_1/lib/python/pydispatch/license.txt %{buildroot}/usr/share/package-licenses/grass/0053f5f87a9855e99be2109f0afefbd03783eb94
+cp %{_builddir}/grass-grass_7_6_1/lib/vector/dglib/COPYING %{buildroot}/usr/share/package-licenses/grass/170b015707d69b319293cdd2cf5707b9abb113aa
+cp %{_builddir}/grass-grass_7_6_1/macosx/pkg/resources/License.rtf %{buildroot}/usr/share/package-licenses/grass/65242d3cadbf641fa880ae981c906ff2c0b56d2b
+cp %{_builddir}/grass-grass_7_6_1/mswindows/external/rbatch/COPYING %{buildroot}/usr/share/package-licenses/grass/b9e28040de9d8773c5b0cc8108869e8f3f287798
+cp %{_builddir}/grass-grass_7_6_1/mswindows/external/rbatch/LICENSE %{buildroot}/usr/share/package-licenses/grass/3e214f9d2536757b88a59d2d5a05f5e38d660e46
+cp %{_builddir}/grass-grass_7_6_1/vector/v.lrs/LICENSE %{buildroot}/usr/share/package-licenses/grass/0dffcc72bb327ff5b4dc2158e1723f334779543b
 %make_install prefix=%{buildroot}%{_libdir} UNIX_BIN=%{buildroot}%{_bindir} || :
 ## install_append content
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/include/grass
+mkdir -p %{buildroot}/usr/include/grass/dgl
 mkdir -p %{buildroot}/usr/lib64
-cp -r include/* %{buildroot}/usr/include/grass
+cp -r include/* %{buildroot}/usr/include/grass/
+cp lib/vector/dglib/*.h %{buildroot}/usr/include/grass/dgl/
+mv %{buildroot}/usr/include/grass/dgl/dgl.h %{buildroot}/usr/include/grass/
+cp lib/vector/rtree/*.h %{buildroot}/usr/include/grass/
+cp lib/external/shapelib/shapefil.h %{buildroot}/usr/include/grass/
+cp -a dist.x86_64-generic-linux-gnu/include/grass/*.h %{buildroot}/usr/include/grass/
 cp dist.x86_64-generic-linux-gnu/lib/* %{buildroot}/usr/lib64
 ## install_append end
 
@@ -150,19 +155,30 @@ cp dist.x86_64-generic-linux-gnu/lib/* %{buildroot}/usr/lib64
 /usr/include/grass/Make/Stlib.make
 /usr/include/grass/Make/Vars.make
 /usr/include/grass/Makefile
+/usr/include/grass/N_gwflow.h
+/usr/include/grass/N_heatflow.h
+/usr/include/grass/N_pde.h
+/usr/include/grass/N_solute_transport.h
 /usr/include/grass/VERSION
 /usr/include/grass/arraystats.h
 /usr/include/grass/bitmap.h
 /usr/include/grass/blas.h
 /usr/include/grass/btree.h
 /usr/include/grass/calc.h
+/usr/include/grass/card.h
+/usr/include/grass/ccmath_grass.h
 /usr/include/grass/cdhc.h
+/usr/include/grass/citing.h
 /usr/include/grass/cluster.h
 /usr/include/grass/colors.h
 /usr/include/grass/config.h
 /usr/include/grass/config.h.in
+/usr/include/grass/confparms.h
+/usr/include/grass/copying.h
+/usr/include/grass/dataquad.h
 /usr/include/grass/datetime.h
 /usr/include/grass/dbmi.h
+/usr/include/grass/dbstubs.h
 /usr/include/grass/defs/Paintlib.h
 /usr/include/grass/defs/arraystats.h
 /usr/include/grass/defs/bitmap.h
@@ -200,6 +216,18 @@ cp dist.x86_64-generic-linux-gnu/lib/* %{buildroot}/usr/lib64
 /usr/include/grass/defs/symbol.h
 /usr/include/grass/defs/vector.h
 /usr/include/grass/defs/vedit.h
+/usr/include/grass/dgl.h
+/usr/include/grass/dgl/avl.h
+/usr/include/grass/dgl/graph.h
+/usr/include/grass/dgl/graph_v1.h
+/usr/include/grass/dgl/graph_v2.h
+/usr/include/grass/dgl/heap.h
+/usr/include/grass/dgl/helpers.h
+/usr/include/grass/dgl/tavl.h
+/usr/include/grass/dgl/tree.h
+/usr/include/grass/dgl/type.h
+/usr/include/grass/dgl/v1-defs.h
+/usr/include/grass/dgl/v2-defs.h
 /usr/include/grass/display.h
 /usr/include/grass/fontcap.h
 /usr/include/grass/form.h
@@ -208,6 +236,8 @@ cp dist.x86_64-generic-linux-gnu/lib/* %{buildroot}/usr/lib64
 /usr/include/grass/gmath.h
 /usr/include/grass/gprojects.h
 /usr/include/grass/imagery.h
+/usr/include/grass/index.h
+/usr/include/grass/interpf.h
 /usr/include/grass/iostream/ami.h
 /usr/include/grass/iostream/ami_config.h
 /usr/include/grass/iostream/ami_sort.h
@@ -229,20 +259,28 @@ cp dist.x86_64-generic-linux-gnu/lib/* %{buildroot}/usr/lib64
 /usr/include/grass/iostream/replacementHeap.h
 /usr/include/grass/iostream/replacementHeapBlock.h
 /usr/include/grass/iostream/rtimer.h
+/usr/include/grass/kdtree.h
 /usr/include/grass/la.h
 /usr/include/grass/lapack.h
+/usr/include/grass/lidar.h
 /usr/include/grass/linkm.h
+/usr/include/grass/lrs.h
 /usr/include/grass/manage.h
 /usr/include/grass/neta.h
 /usr/include/grass/nviz.h
 /usr/include/grass/ogsf.h
 /usr/include/grass/ortholib.h
+/usr/include/grass/qtree.h
 /usr/include/grass/raster.h
 /usr/include/grass/raster3d.h
 /usr/include/grass/rbtree.h
 /usr/include/grass/rowio.h
+/usr/include/grass/rtree.h
 /usr/include/grass/segment.h
+/usr/include/grass/shapefil.h
+/usr/include/grass/simlib.h
 /usr/include/grass/spawn.h
+/usr/include/grass/split.h
 /usr/include/grass/sqlp.h
 /usr/include/grass/stats.h
 /usr/include/grass/symbol.h
@@ -256,6 +294,7 @@ cp dist.x86_64-generic-linux-gnu/lib/* %{buildroot}/usr/lib64
 /usr/include/grass/vedit.h
 /usr/include/grass/version.h
 /usr/include/grass/version.h.in
+/usr/include/grass/waterglobs.h
 /usr/lib64/libgrass_arraystats.7.6.so
 /usr/lib64/libgrass_arraystats.so
 /usr/lib64/libgrass_bitmap.7.6.so

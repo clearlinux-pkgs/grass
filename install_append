@@ -1,5 +1,16 @@
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/include/grass
+mkdir -p %{buildroot}/usr/include/grass/dgl
 mkdir -p %{buildroot}/usr/lib64
-cp -r include/* %{buildroot}/usr/include/grass
+# Copy headers.
+cp -r include/* %{buildroot}/usr/include/grass/
+# Copy DGLib headers.
+cp lib/vector/dglib/*.h %{buildroot}/usr/include/grass/dgl/
+mv %{buildroot}/usr/include/grass/dgl/dgl.h %{buildroot}/usr/include/grass/
+# Copy RTree headers.
+cp lib/vector/rtree/*.h %{buildroot}/usr/include/grass/
+# Copy shapefil header.
+cp lib/external/shapelib/shapefil.h %{buildroot}/usr/include/grass/
+# Rest grass headers.
+cp -a dist.x86_64-generic-linux-gnu/include/grass/*.h %{buildroot}/usr/include/grass/
+# Copy Libraries.
 cp dist.x86_64-generic-linux-gnu/lib/* %{buildroot}/usr/lib64
