@@ -4,7 +4,7 @@
 #
 Name     : grass
 Version  : 7.6.1
-Release  : 13
+Release  : 14
 URL      : https://github.com/OSGeo/grass/archive/grass_7_6_1.tar.gz
 Source0  : https://github.com/OSGeo/grass/archive/grass_7_6_1.tar.gz
 Summary  : Multi-producer-multi-consumer signal dispatching mechanism
@@ -64,13 +64,14 @@ staticdev components for the grass package.
 
 %prep
 %setup -q -n grass-grass_7_6_1
+cd %{_builddir}/grass-grass_7_6_1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571213051
+export SOURCE_DATE_EPOCH=1585691462
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -85,7 +86,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -std=gnu++98"
 make  || :
 
 %install
-export SOURCE_DATE_EPOCH=1571213051
+export SOURCE_DATE_EPOCH=1585691462
 rm -rf %{buildroot}
 ## install_prepend content
 mkdir -p %{buildroot}/usr/etc
@@ -108,12 +109,18 @@ cp %{_builddir}/grass-grass_7_6_1/vector/v.lrs/LICENSE %{buildroot}/usr/share/pa
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/include/grass/dgl
 mkdir -p %{buildroot}/usr/lib64
+# Copy headers.
 cp -r include/* %{buildroot}/usr/include/grass/
+# Copy DGLib headers.
 cp lib/vector/dglib/*.h %{buildroot}/usr/include/grass/dgl/
 mv %{buildroot}/usr/include/grass/dgl/dgl.h %{buildroot}/usr/include/grass/
+# Copy RTree headers.
 cp lib/vector/rtree/*.h %{buildroot}/usr/include/grass/
+# Copy shapefil header.
 cp lib/external/shapelib/shapefil.h %{buildroot}/usr/include/grass/
+# Rest grass headers.
 cp -a dist.x86_64-generic-linux-gnu/include/grass/*.h %{buildroot}/usr/include/grass/
+# Copy Libraries.
 cp dist.x86_64-generic-linux-gnu/lib/* %{buildroot}/usr/lib64
 ## install_append end
 
