@@ -4,12 +4,12 @@
 #
 Name     : grass
 Version  : 7.6.1
-Release  : 14
+Release  : 15
 URL      : https://github.com/OSGeo/grass/archive/grass_7_6_1.tar.gz
 Source0  : https://github.com/OSGeo/grass/archive/grass_7_6_1.tar.gz
 Summary  : Multi-producer-multi-consumer signal dispatching mechanism
 Group    : Development/Tools
-License  : BSD-3-Clause GPL-2.0 GPL-2.0+ LGPL-2.1 MIT
+License  : BSD-3-Clause CC-BY-SA-3.0 GPL-2.0 GPL-2.0+ LGPL-2.1 MIT
 BuildRequires : bison
 BuildRequires : buildreq-distutils3
 BuildRequires : buildreq-gnome
@@ -24,7 +24,6 @@ BuildRequires : geos
 BuildRequires : geos-dev
 BuildRequires : gfortran
 BuildRequires : glu-dev
-BuildRequires : grass-dev
 BuildRequires : libpng-dev
 BuildRequires : mesa-dev
 BuildRequires : netcdf
@@ -71,14 +70,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1585691462
+export SOURCE_DATE_EPOCH=1588618912
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -std=gnu++98"
 %configure --disable-static --with-fftw \
 --with-openmp \
@@ -86,7 +85,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -std=gnu++98"
 make  || :
 
 %install
-export SOURCE_DATE_EPOCH=1585691462
+export SOURCE_DATE_EPOCH=1588618912
 rm -rf %{buildroot}
 ## install_prepend content
 mkdir -p %{buildroot}/usr/etc
@@ -95,6 +94,7 @@ touch  %{buildroot}/usr/etc/fontcap
 mkdir -p %{buildroot}/usr/share/package-licenses/grass
 cp %{_builddir}/grass-grass_7_6_1/COPYING %{buildroot}/usr/share/package-licenses/grass/fec4c918439699ee30a9d9d3c6871eab45246425
 cp %{_builddir}/grass-grass_7_6_1/GPL.TXT %{buildroot}/usr/share/package-licenses/grass/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
+cp %{_builddir}/grass-grass_7_6_1/gui/icons/grass/LICENSE.TXT %{buildroot}/usr/share/package-licenses/grass/0747c895de1a0b941f6b0abdd187a107993e417f
 cp %{_builddir}/grass-grass_7_6_1/lib/external/ccmath/lgpl.license %{buildroot}/usr/share/package-licenses/grass/da016558d8dd563e6693582be08505ac1a5387a1
 cp %{_builddir}/grass-grass_7_6_1/lib/init/license.txt %{buildroot}/usr/share/package-licenses/grass/9fb43ecc8e9ad6fa06ea95c49ca2bbe7f9917f11
 cp %{_builddir}/grass-grass_7_6_1/lib/python/ctypes/ctypesgencore/LICENSE %{buildroot}/usr/share/package-licenses/grass/0e8932b32ff8fa9942ca97b138f518cddf430977

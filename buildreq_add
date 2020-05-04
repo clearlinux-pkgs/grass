@@ -13,7 +13,6 @@ geos
 geos-dev
 gfortran
 glu-dev
-grass-dev
 libpng-dev
 mesa-dev
 netcdf
