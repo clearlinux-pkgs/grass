@@ -4,7 +4,7 @@
 #
 Name     : grass
 Version  : 7.6.1
-Release  : 15
+Release  : 16
 URL      : https://github.com/OSGeo/grass/archive/grass_7_6_1.tar.gz
 Source0  : https://github.com/OSGeo/grass/archive/grass_7_6_1.tar.gz
 Summary  : Multi-producer-multi-consumer signal dispatching mechanism
@@ -70,7 +70,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1588618912
+export SOURCE_DATE_EPOCH=1588970575
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -85,7 +85,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -std=gnu++98"
 make  || :
 
 %install
-export SOURCE_DATE_EPOCH=1588618912
+export SOURCE_DATE_EPOCH=1588970575
 rm -rf %{buildroot}
 ## install_prepend content
 mkdir -p %{buildroot}/usr/etc
