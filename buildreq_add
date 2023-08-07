@@ -19,5 +19,6 @@ netcdf
 netcdf-dev
 openblas
 proj-dev
+pypi-wxPython
 sqlite-autoconf-dev
 tiff-dev
