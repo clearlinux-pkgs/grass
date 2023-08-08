@@ -5,7 +5,7 @@
 #
 Name     : grass
 Version  : 8.2.1
-Release  : 22
+Release  : 23
 URL      : https://github.com/OSGeo/grass/archive/8.2.1/grass-8.2.1.tar.gz
 Source0  : https://github.com/OSGeo/grass/archive/8.2.1/grass-8.2.1.tar.gz
 Summary  : Multi-producer-multi-consumer signal dispatching mechanism
@@ -75,7 +75,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1691449514
+export SOURCE_DATE_EPOCH=1691536738
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -90,7 +90,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonl
 make  || :
 
 %install
-export SOURCE_DATE_EPOCH=1691449514
+export SOURCE_DATE_EPOCH=1691536738
 rm -rf %{buildroot}
 ## install_prepend content
 mkdir -p %{buildroot}/usr/etc
@@ -124,6 +124,12 @@ cp lib/external/shapelib/shapefil.h %{buildroot}/usr/include/grass/
 cp -a dist.x86_64-generic-linux-gnu/include/grass/*.h %{buildroot}/usr/include/grass/
 # Copy Libraries.
 cp dist.x86_64-generic-linux-gnu/lib/* %{buildroot}/usr/lib64
+# Fixup the pc file
+sed 's|/usr/grass-[0-9\.]\+/lib|/usr/lib64|g' -i grass.pc
+sed 's|/usr/grass-[0-9\.]\+/include|/usr/include/grass|g' -i grass.pc
+sed 's|/usr/grass-[0-9\.]\+|/usr|g' -i grass.pc
+mkdir -p %{buildroot}/usr/lib64/pkgconfig
+cp -a grass.pc %{buildroot}/usr/lib64/pkgconfig
 ## install_append end
 
 %files
@@ -449,6 +455,7 @@ cp dist.x86_64-generic-linux-gnu/lib/* %{buildroot}/usr/lib64
 /usr/lib64/libgrass_vector.so
 /usr/lib64/libgrass_vedit.8.2.so
 /usr/lib64/libgrass_vedit.so
+/usr/lib64/pkgconfig/grass.pc
 
 %files staticdev
 %defattr(-,root,root,-)

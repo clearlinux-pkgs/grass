@@ -14,3 +14,9 @@ cp lib/external/shapelib/shapefil.h %{buildroot}/usr/include/grass/
 cp -a dist.x86_64-generic-linux-gnu/include/grass/*.h %{buildroot}/usr/include/grass/
 # Copy Libraries.
 cp dist.x86_64-generic-linux-gnu/lib/* %{buildroot}/usr/lib64
+# Fixup the pc file
+sed 's|/usr/grass-[0-9\.]\+/lib|/usr/lib64|g' -i grass.pc
+sed 's|/usr/grass-[0-9\.]\+/include|/usr/include/grass|g' -i grass.pc
+sed 's|/usr/grass-[0-9\.]\+|/usr|g' -i grass.pc
+mkdir -p %{buildroot}/usr/lib64/pkgconfig
+cp -a grass.pc %{buildroot}/usr/lib64/pkgconfig
