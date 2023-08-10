@@ -4,13 +4,13 @@
 # Using build pattern: configure
 #
 Name     : grass
-Version  : 8.2.1
-Release  : 23
-URL      : https://github.com/OSGeo/grass/archive/8.2.1/grass-8.2.1.tar.gz
-Source0  : https://github.com/OSGeo/grass/archive/8.2.1/grass-8.2.1.tar.gz
+Version  : 8.3.0
+Release  : 24
+URL      : https://github.com/OSGeo/grass/archive/8.3.0/grass-8.3.0.tar.gz
+Source0  : https://github.com/OSGeo/grass/archive/8.3.0/grass-8.3.0.tar.gz
 Summary  : Multi-producer-multi-consumer signal dispatching mechanism
 Group    : Development/Tools
-License  : BSD-3-Clause CC-BY-SA-3.0 GPL-2.0 GPL-2.0+ MIT
+License  : BSD-2-Clause BSD-3-Clause CC-BY-SA-3.0 GPL-2.0 GPL-2.0+ LGPL-2.1 MIT
 BuildRequires : bison
 BuildRequires : buildreq-configure
 BuildRequires : buildreq-gnome
@@ -30,6 +30,7 @@ BuildRequires : mesa-dev
 BuildRequires : netcdf
 BuildRequires : netcdf-dev
 BuildRequires : openblas
+BuildRequires : pkgconfig(pdal)
 BuildRequires : pkgconfig(x11)
 BuildRequires : proj-dev
 BuildRequires : pypi-wxPython
@@ -57,25 +58,16 @@ Requires: grass = %{version}-%{release}
 dev components for the grass package.
 
 
-%package staticdev
-Summary: staticdev components for the grass package.
-Group: Default
-Requires: grass-dev = %{version}-%{release}
-
-%description staticdev
-staticdev components for the grass package.
-
-
 %prep
-%setup -q -n grass-8.2.1
-cd %{_builddir}/grass-8.2.1
+%setup -q -n grass-8.3.0
+cd %{_builddir}/grass-8.3.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1691536738
+export SOURCE_DATE_EPOCH=1691627922
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -83,28 +75,28 @@ export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -std=gnu++98"
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 %configure --disable-static --with-fftw \
 --with-openmp \
 --without-freetype
 make  || :
 
 %install
-export SOURCE_DATE_EPOCH=1691536738
+export SOURCE_DATE_EPOCH=1691627922
 rm -rf %{buildroot}
 ## install_prepend content
 mkdir -p %{buildroot}/usr/etc
 touch  %{buildroot}/usr/etc/fontcap
 ## install_prepend end
 mkdir -p %{buildroot}/usr/share/package-licenses/grass
-cp %{_builddir}/grass-%{version}/COPYING %{buildroot}/usr/share/package-licenses/grass/f8190fb6633e976c01e0e27652995ae82167ea28 || :
 cp %{_builddir}/grass-%{version}/GPL.TXT %{buildroot}/usr/share/package-licenses/grass/06877624ea5c77efe3b7e39b0f909eda6e25a4ec || :
-cp %{_builddir}/grass-%{version}/gui/icons/grass/LICENSE.TXT %{buildroot}/usr/share/package-licenses/grass/0747c895de1a0b941f6b0abdd187a107993e417f || :
-cp %{_builddir}/grass-%{version}/lib/init/license.txt %{buildroot}/usr/share/package-licenses/grass/9fb43ecc8e9ad6fa06ea95c49ca2bbe7f9917f11 || :
-cp %{_builddir}/grass-%{version}/lib/vector/dglib/COPYING %{buildroot}/usr/share/package-licenses/grass/170b015707d69b319293cdd2cf5707b9abb113aa || :
+cp %{_builddir}/grass-%{version}/gui/icons/grass/LICENSE.TXT %{buildroot}/usr/share/package-licenses/grass/095127a16b456be28e180b85c739535e9de42ec2 || :
+cp %{_builddir}/grass-%{version}/lib/external/ccmath/lgpl.license %{buildroot}/usr/share/package-licenses/grass/85b6c317814eb04c6ef5f0090037358e1be06b12 || :
+cp %{_builddir}/grass-%{version}/lib/vector/dglib/COPYING %{buildroot}/usr/share/package-licenses/grass/6e3c11e241d01ccacf94f5c138f9150bd8a5b65f || :
 cp %{_builddir}/grass-%{version}/mswindows/external/rbatch/COPYING %{buildroot}/usr/share/package-licenses/grass/b9e28040de9d8773c5b0cc8108869e8f3f287798 || :
 cp %{_builddir}/grass-%{version}/mswindows/external/rbatch/LICENSE %{buildroot}/usr/share/package-licenses/grass/3e214f9d2536757b88a59d2d5a05f5e38d660e46 || :
-cp %{_builddir}/grass-%{version}/python/grass/pydispatch/license.txt %{buildroot}/usr/share/package-licenses/grass/0053f5f87a9855e99be2109f0afefbd03783eb94 || :
+cp %{_builddir}/grass-%{version}/python/grass/pydispatch/license.txt %{buildroot}/usr/share/package-licenses/grass/59d4a2706b04976b460f78fb96c232ceeb155302 || :
+cp %{_builddir}/grass-%{version}/python/libgrass_interface_generator/LICENSE %{buildroot}/usr/share/package-licenses/grass/083f420d5cabd4e87c1cced4399546adf61c03bd || :
 cp %{_builddir}/grass-%{version}/vector/v.lrs/LICENSE %{buildroot}/usr/share/package-licenses/grass/0dffcc72bb327ff5b4dc2158e1723f334779543b || :
 %make_install prefix=%{buildroot}%{_libdir} UNIX_BIN=%{buildroot}%{_bindir} || :
 ## install_append content
@@ -351,112 +343,110 @@ cp -a grass.pc %{buildroot}/usr/lib64/pkgconfig
 /usr/include/grass/vedit.h
 /usr/include/grass/version.h
 /usr/include/grass/waterglobs.h
-/usr/lib64/libgrass_arraystats.8.2.so
+/usr/lib64/libgrass_arraystats.8.3.so
 /usr/lib64/libgrass_arraystats.so
-/usr/lib64/libgrass_bitmap.8.2.so
+/usr/lib64/libgrass_bitmap.8.3.so
 /usr/lib64/libgrass_bitmap.so
-/usr/lib64/libgrass_btree.8.2.so
+/usr/lib64/libgrass_btree.8.3.so
 /usr/lib64/libgrass_btree.so
-/usr/lib64/libgrass_btree2.8.2.so
+/usr/lib64/libgrass_btree2.8.3.so
 /usr/lib64/libgrass_btree2.so
-/usr/lib64/libgrass_cairodriver.8.2.so
+/usr/lib64/libgrass_cairodriver.8.3.so
 /usr/lib64/libgrass_cairodriver.so
-/usr/lib64/libgrass_calc.8.2.so
+/usr/lib64/libgrass_calc.8.3.so
 /usr/lib64/libgrass_calc.so
-/usr/lib64/libgrass_ccmath.8.2.so
+/usr/lib64/libgrass_ccmath.8.3.so
 /usr/lib64/libgrass_ccmath.so
-/usr/lib64/libgrass_cdhc.8.2.so
+/usr/lib64/libgrass_cdhc.8.3.so
 /usr/lib64/libgrass_cdhc.so
-/usr/lib64/libgrass_cluster.8.2.so
+/usr/lib64/libgrass_cluster.8.3.so
 /usr/lib64/libgrass_cluster.so
-/usr/lib64/libgrass_datetime.8.2.so
+/usr/lib64/libgrass_datetime.8.3.so
 /usr/lib64/libgrass_datetime.so
-/usr/lib64/libgrass_dbmibase.8.2.so
+/usr/lib64/libgrass_dbmibase.8.3.so
 /usr/lib64/libgrass_dbmibase.so
-/usr/lib64/libgrass_dbmiclient.8.2.so
+/usr/lib64/libgrass_dbmiclient.8.3.so
 /usr/lib64/libgrass_dbmiclient.so
-/usr/lib64/libgrass_dbmidriver.8.2.so
+/usr/lib64/libgrass_dbmidriver.8.3.so
 /usr/lib64/libgrass_dbmidriver.so
-/usr/lib64/libgrass_dbstubs.8.2.so
+/usr/lib64/libgrass_dbstubs.8.3.so
 /usr/lib64/libgrass_dbstubs.so
-/usr/lib64/libgrass_dgl.8.2.so
+/usr/lib64/libgrass_dgl.8.3.so
 /usr/lib64/libgrass_dgl.so
-/usr/lib64/libgrass_dig2.8.2.so
+/usr/lib64/libgrass_dig2.8.3.so
 /usr/lib64/libgrass_dig2.so
-/usr/lib64/libgrass_display.8.2.so
+/usr/lib64/libgrass_display.8.3.so
 /usr/lib64/libgrass_display.so
-/usr/lib64/libgrass_driver.8.2.so
+/usr/lib64/libgrass_driver.8.3.so
 /usr/lib64/libgrass_driver.so
-/usr/lib64/libgrass_dspf.8.2.so
+/usr/lib64/libgrass_dspf.8.3.so
 /usr/lib64/libgrass_dspf.so
-/usr/lib64/libgrass_g3d.8.2.so
+/usr/lib64/libgrass_g3d.8.3.so
 /usr/lib64/libgrass_g3d.so
-/usr/lib64/libgrass_gis.8.2.so
+/usr/lib64/libgrass_gis.8.3.so
 /usr/lib64/libgrass_gis.so
-/usr/lib64/libgrass_gmath.8.2.so
+/usr/lib64/libgrass_gmath.8.3.so
 /usr/lib64/libgrass_gmath.so
-/usr/lib64/libgrass_gpde.8.2.so
+/usr/lib64/libgrass_gpde.8.3.so
 /usr/lib64/libgrass_gpde.so
-/usr/lib64/libgrass_gproj.8.2.so
+/usr/lib64/libgrass_gproj.8.3.so
 /usr/lib64/libgrass_gproj.so
-/usr/lib64/libgrass_htmldriver.8.2.so
+/usr/lib64/libgrass_htmldriver.8.3.so
 /usr/lib64/libgrass_htmldriver.so
-/usr/lib64/libgrass_imagery.8.2.so
+/usr/lib64/libgrass_imagery.8.3.so
 /usr/lib64/libgrass_imagery.so
-/usr/lib64/libgrass_interpdata.8.2.so
+/usr/lib64/libgrass_interpdata.8.3.so
 /usr/lib64/libgrass_interpdata.so
-/usr/lib64/libgrass_interpfl.8.2.so
+/usr/lib64/libgrass_interpfl.8.3.so
 /usr/lib64/libgrass_interpfl.so
-/usr/lib64/libgrass_iortho.8.2.so
+/usr/lib64/libgrass_iortho.8.3.so
 /usr/lib64/libgrass_iortho.so
-/usr/lib64/libgrass_lidar.8.2.so
+/usr/lib64/libgrass_iostream.8.3.so
+/usr/lib64/libgrass_iostream.so
+/usr/lib64/libgrass_lidar.8.3.so
 /usr/lib64/libgrass_lidar.so
-/usr/lib64/libgrass_linkm.8.2.so
+/usr/lib64/libgrass_linkm.8.3.so
 /usr/lib64/libgrass_linkm.so
-/usr/lib64/libgrass_lrs.8.2.so
+/usr/lib64/libgrass_lrs.8.3.so
 /usr/lib64/libgrass_lrs.so
-/usr/lib64/libgrass_manage.8.2.so
+/usr/lib64/libgrass_manage.8.3.so
 /usr/lib64/libgrass_manage.so
-/usr/lib64/libgrass_neta.8.2.so
+/usr/lib64/libgrass_neta.8.3.so
 /usr/lib64/libgrass_neta.so
-/usr/lib64/libgrass_nviz.8.2.so
+/usr/lib64/libgrass_nviz.8.3.so
 /usr/lib64/libgrass_nviz.so
-/usr/lib64/libgrass_ogsf.8.2.so
+/usr/lib64/libgrass_ogsf.8.3.so
 /usr/lib64/libgrass_ogsf.so
-/usr/lib64/libgrass_pngdriver.8.2.so
+/usr/lib64/libgrass_pngdriver.8.3.so
 /usr/lib64/libgrass_pngdriver.so
-/usr/lib64/libgrass_psdriver.8.2.so
+/usr/lib64/libgrass_psdriver.8.3.so
 /usr/lib64/libgrass_psdriver.so
-/usr/lib64/libgrass_qtree.8.2.so
+/usr/lib64/libgrass_qtree.8.3.so
 /usr/lib64/libgrass_qtree.so
-/usr/lib64/libgrass_raster.8.2.so
+/usr/lib64/libgrass_raster.8.3.so
 /usr/lib64/libgrass_raster.so
-/usr/lib64/libgrass_rli.8.2.so
+/usr/lib64/libgrass_rli.8.3.so
 /usr/lib64/libgrass_rli.so
-/usr/lib64/libgrass_rowio.8.2.so
+/usr/lib64/libgrass_rowio.8.3.so
 /usr/lib64/libgrass_rowio.so
-/usr/lib64/libgrass_rtree.8.2.so
+/usr/lib64/libgrass_rtree.8.3.so
 /usr/lib64/libgrass_rtree.so
-/usr/lib64/libgrass_segment.8.2.so
+/usr/lib64/libgrass_segment.8.3.so
 /usr/lib64/libgrass_segment.so
-/usr/lib64/libgrass_shape.8.2.so
+/usr/lib64/libgrass_shape.8.3.so
 /usr/lib64/libgrass_shape.so
-/usr/lib64/libgrass_sim.8.2.so
+/usr/lib64/libgrass_sim.8.3.so
 /usr/lib64/libgrass_sim.so
-/usr/lib64/libgrass_sqlp.8.2.so
+/usr/lib64/libgrass_sqlp.8.3.so
 /usr/lib64/libgrass_sqlp.so
-/usr/lib64/libgrass_stats.8.2.so
+/usr/lib64/libgrass_stats.8.3.so
 /usr/lib64/libgrass_stats.so
-/usr/lib64/libgrass_symb.8.2.so
+/usr/lib64/libgrass_symb.8.3.so
 /usr/lib64/libgrass_symb.so
-/usr/lib64/libgrass_temporal.8.2.so
+/usr/lib64/libgrass_temporal.8.3.so
 /usr/lib64/libgrass_temporal.so
-/usr/lib64/libgrass_vector.8.2.so
+/usr/lib64/libgrass_vector.8.3.so
 /usr/lib64/libgrass_vector.so
-/usr/lib64/libgrass_vedit.8.2.so
+/usr/lib64/libgrass_vedit.8.3.so
 /usr/lib64/libgrass_vedit.so
 /usr/lib64/pkgconfig/grass.pc
-
-%files staticdev
-%defattr(-,root,root,-)
-/usr/lib64/libgrass_iostream.8.2.a
