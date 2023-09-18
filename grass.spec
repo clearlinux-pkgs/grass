@@ -5,7 +5,7 @@
 #
 Name     : grass
 Version  : 8.3.0
-Release  : 24
+Release  : 25
 URL      : https://github.com/OSGeo/grass/archive/8.3.0/grass-8.3.0.tar.gz
 Source0  : https://github.com/OSGeo/grass/archive/8.3.0/grass-8.3.0.tar.gz
 Summary  : Multi-producer-multi-consumer signal dispatching mechanism
@@ -67,7 +67,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1691627922
+export SOURCE_DATE_EPOCH=1695063340
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -82,7 +82,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonl
 make  || :
 
 %install
-export SOURCE_DATE_EPOCH=1691627922
+export SOURCE_DATE_EPOCH=1695063340
 rm -rf %{buildroot}
 ## install_prepend content
 mkdir -p %{buildroot}/usr/etc
