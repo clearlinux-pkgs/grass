@@ -6,9 +6,9 @@ libcairo.so.2
 libfftw3.so.3
 libfontconfig.so.1
 libgcc_s.so.1
-libgdal.so.33
-libgomp.so.1
+libgdal.so.34
 libm.so.6
+libomp.so
 libpng16.so.16
 libproj.so.25
 libstdc++.so.6
