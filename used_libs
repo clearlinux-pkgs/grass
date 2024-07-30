@@ -6,11 +6,13 @@ libcairo.so.2
 libfftw3.so.3
 libfontconfig.so.1
 libgcc_s.so.1
-libgdal.so.34
+libgdal.so.35
 libm.so.6
 libomp.so
+libpdalcpp.so.17
 libpng16.so.16
 libproj.so.25
+libsqlite3.so.0
 libstdc++.so.6
 libtiff.so.6
 libz.so.1
