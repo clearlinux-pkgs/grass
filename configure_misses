@@ -1,30 +1,15 @@
 Configure miss: MacOSX SDK
-Configure miss: MacOSX SDK
-Configure miss: MacOSX architectures
 Configure miss: MacOSX architectures
 Configure miss: _LARGE_FILES value needed for large files
-Configure miss: _LARGE_FILES value needed for large files
-Configure miss: atan
 Configure miss: atan
 Configure miss: executable suffix
-Configure miss: executable suffix
-Configure miss: f2c.h
 Configure miss: f2c.h
 Configure miss: f2c.h presence
-Configure miss: f2c.h presence
-Configure miss: f2c.h usability
 Configure miss: f2c.h usability
 Configure miss: g2c.h
-Configure miss: g2c.h
-Configure miss: g2c.h presence
 Configure miss: g2c.h presence
 Configure miss: g2c.h usability
-Configure miss: g2c.h usability
-Configure miss: setruid
 Configure miss: setruid
 Configure miss: whether to use GEOS
-Configure miss: whether to use GEOS
 Configure miss: whether to use NetCDF
-Configure miss: whether to use NetCDF
-Configure miss: whether to use libLAS
 Configure miss: whether to use libLAS
