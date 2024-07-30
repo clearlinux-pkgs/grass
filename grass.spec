@@ -7,7 +7,7 @@
 #
 Name     : grass
 Version  : 8.3.2
-Release  : 52
+Release  : 53
 URL      : https://github.com/OSGeo/grass/archive/8.3.2/grass-8.3.2.tar.gz
 Source0  : https://github.com/OSGeo/grass/archive/8.3.2/grass-8.3.2.tar.gz
 Summary  : Multi-producer-multi-consumer signal dispatching mechanism
