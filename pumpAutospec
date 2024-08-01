@@ -1,1 +1,1 @@
-Error invoking abireport: Command '['abireport', 'scan-packages', '/sdb5/clear/packages/grass/results/grass-8.4.0-56.x86_64.rpm', '/sdb5/clear/packages/grass/results/grass-dev-8.4.0-56.x86_64.rpm']' returned non-zero exit status 1.
+Build succeeds 
