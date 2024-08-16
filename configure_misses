@@ -4,11 +4,9 @@ Configure miss: _LARGE_FILES value needed for large files
 Configure miss: atan
 Configure miss: executable suffix
 Configure miss: f2c.h
-Configure miss: f2c.h presence
-Configure miss: f2c.h usability
+Configure miss: g++ option to enable C++11 features
 Configure miss: g2c.h
-Configure miss: g2c.h presence
-Configure miss: g2c.h usability
+Configure miss: include/VERSION_GIT
 Configure miss: setruid
 Configure miss: whether to use GEOS
 Configure miss: whether to use NetCDF
