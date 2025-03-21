@@ -7,6 +7,7 @@ Configure miss: f2c.h
 Configure miss: g++ option to enable C++11 features
 Configure miss: g2c.h
 Configure miss: include/VERSION_GIT
+Configure miss: omp_get_num_threads in -lomp
 Configure miss: setruid
 Configure miss: whether to use GEOS
 Configure miss: whether to use NetCDF
